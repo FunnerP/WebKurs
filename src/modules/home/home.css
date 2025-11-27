@@ -1,0 +1,68 @@
+nav{    
+    background-color: #232536;
+    color: white;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-family: 'Sen';
+}
+nav a{
+    text-decoration: none;
+    color: white;
+}
+nav .first{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+}
+nav .second{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+nav .first button{
+    width: 179px;
+    height: 56px;
+    font-weight: 700;
+}
+
+
+
+
+
+.home-head{
+    height: 720px;
+    background-image: url(img/one/oneback.png);
+    background-size: cover ;
+}
+.home-head .fon{
+    background-color: rgba(0, 0, 0, 50%);
+    height: 100%;
+    width: 100%;
+    color: white;
+    padding: 100px;
+}
+.home-head .main{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 50%;
+}
+.home-head span{
+    color: rgba(255, 208, 80, 1);
+}
+.home-head h1{
+    font-size: 56px;
+}
+.home-head button{
+    width: 200px;
+    height: 60px;
+    margin-top: 50px;
+    background-color: rgba(255, 208, 80, 1);
+}
