@@ -7,6 +7,17 @@ import fb from './images/navs/fb.png'
 import insta from './images/navs/insta.png'
 import ld from './images/navs/ld.png'
 
+import one from './images/blog/one.png'
+import two from './images/blog/two.png'
+import three from './images/blog/three.png'
+import four from './images/blog/four.png'
+import five from './images/blog/five.png'
+
+import bus from './images/home/bus.png'
+import start from './images/home/start.png'
+import eco from './images/home/eco.png'
+import tech from './images/home/tech.png'
+
 function Blog() {
   const [count, setCount] = useState(0)
   const navigate = useNavigate()
@@ -51,6 +62,91 @@ function Blog() {
         </div>
         <img src={man} alt="" />
     </header>
+
+    <section className='blog-one'>
+      <h1>All posts</h1>
+      <div className='main'>
+        <div className='mod'>
+          <img src={one} alt="" />
+          <div>
+            <h3>Startup</h3>
+            <h2>Design tips for designers that cover everything you need</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          </div>
+        </div>
+        <div className='mod'>
+          <img src={two} alt="" />
+          <div>
+            <h3>BUSINESS</h3>
+            <h2>How to build rapport with your web design clients</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          </div>
+        </div>
+        <div className='mod'>
+          <img src={three} alt="" />
+          <div>
+            <h3>Startup</h3>
+            <h2>Logo design trends to avoid in 2022</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          </div>
+        </div>
+        <div className='mod'>
+          <img src={four} alt="" />
+          <div>
+            <h3>TECHNOLOGY</h3>
+            <h2>8 Figma design systems you can download for free today</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          </div>
+        </div>
+        <div className='mod'>
+          <img src={five} alt="" />
+          <div>
+            <h3>ECONOMY</h3>
+            <h2>Font sizes in UI design: The complete guide to follow</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          </div>
+        </div>
+      </div>
+      <div className='bottom'>
+        <a href="">◀ Prev</a>
+        <a href="">Next ▶</a>
+      </div>
+    </section>
+
+    <section className='blog-two'>
+            <h1>All Categories</h1>
+            <div className='main'>
+              <div>
+                <img src={bus} alt="" />
+                <h2>Business</h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+              </div>
+              <div>
+                <img src={start} alt="" />
+                <h2>Startup</h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+              </div>
+              <div>
+                <img src={eco} alt="" />
+                <h2>Economy</h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+              </div>
+              <div>
+                <img src={tech} alt="" />
+                <h2>Technology</h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+              </div>
+            </div>
+    </section>
+    
+    <section className='home-seven'>
+      <div>
+        <h1>Join our team to be a part of our story</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        <button>Join Now</button>
+      </div>
+    </section>
+    
     <footer>
       <nav>
       <h1>Finsweet</h1>

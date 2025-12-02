@@ -31,6 +31,9 @@ nav .first button{
     font-weight: 700;
 }
 
+a{
+    text-decoration: 0;
+}
 
 
 footer{   
@@ -106,7 +109,6 @@ footer .end .mess{
     height: 100%;
     width: 100%;
     color: white;
-    padding: 0 100px;
     display: flex;
     justify-content: flex-start;
     align-items: start;
@@ -118,6 +120,7 @@ footer .end .mess{
     justify-content: center;
     width: 50%;
     margin-top: 100px;
+    padding-left:100px;
 }
 .home-head span{
     color: rgba(255, 208, 80, 1);
@@ -143,18 +146,19 @@ footer .end .mess{
     display: flex;
     width: 100%;
     justify-content: space-between;
+    padding-left: 10%;
 }
 .home-one .bottom{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 .home-one .bottom .first{
     width: 669px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
 }
 .home-one .bottom .second{
     width: 35%;
@@ -166,9 +170,263 @@ footer .end .mess{
 .home-one .bottom .second div{
     height: 25%;
 }
+.home-one .bottom .second div:hover{
+    background-color: #FBF6EA;
+}
+.home-one button{
+    width: 200px;
+    height: 60px;
+    margin-top: 50px;
+    background-color: rgba(255, 208, 80, 1);
+    border: 0;
+}
+.home-one span{
+    color: #592EA9;
+}
 
+.home-two{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 15%;
+}
+.home-two .yellow{
+    height: 23px;
+    width: 50%;
+    background-color: #FFD050;
+}
+.home-two .purple{
+    height: 23px;
+    width: 20%;
+    background-color: #592EA9;
+}
+.home-two .top{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+.home-two .bottom{
+    background-color: #F4F0F8;
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.home-two .bottom div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 40%;
+}
+.home-two .bottom a{
+    font-weight: 700;
+}
 
+.home-three{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 15%;
+}
+.home-three .main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.home-three .main div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid #6D6E76;
+    flex-direction: column;
+    width: 22%;
+    padding: 15px 0;
+    padding-left: 15px;
+}
+.home-three .main div:hover{
+    background-color: #FFD050;
+    border: 0;
+}
+.home-three .main div img{
+    padding: 13px;
+    background-color: #FBF6EA;
+    border-radius: 15%;
+}
+.home-three .main div:first-of-type img{
+    padding: 0px;
+}
 
+.home-four img{
+    z-index: -9;
+    position: absolute;
+}
+.home-four{
+    padding: 100px 15%;
+    height: 700px;
+    display: flex;
+}
+.home-four .main{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end;
+    align-self: flex-end;
+    padding: 100px;
+    margin-left: 40%;
+    transform: translateY(5px)
+}
+.home-four .main h2{
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.home-four .main h1{
+    font-size: 48px;
+    font-weight: 700;
+}
+.home-four .main p{
+    color: #6D6E76;
+    font-size: 16px;
+}
+.home-four .main button{
+    background-color: #FFD050;
+    width: 270px;
+    height: 56px;
+    font-size: 18px;
+    font-weight: 700;
+    border: 0;
+}
+
+.home-five{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 15%;
+}
+.home-five .top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.home-five .top .in{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 22%;
+    padding: 50px 0;
+}
+.home-five .mess{
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.home-five p{
+    color: #6D6E76;
+}
+.home-five .in:hover{
+    background-color: #FBF6EA;
+}
+.home-five .logo{
+    margin-top: 100px;
+}
+
+.home-six{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 15%;
+}
+.home-six .main{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FBF6EA;
+    height: 464px;
+}
+.home-six .left{
+    width: 40%;
+    border-right: 1px solid gainsboro;
+    height: 310px;
+}
+.home-six .right{
+    width: 40%;
+    height: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.home-six button{
+    border: 0;
+    background-color: #F4F4F4;
+    color: #232536;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+}
+.home-six button:hover{
+    background-color: #232536;
+    color: #F4F4F4;
+}
+.home-six .bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.home-six .jon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+.home-six .strelki{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-seven{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+    padding-bottom: 300px;
+}
+.home-seven div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 414px;
+}
+.home-seven h1{
+    font-size: 36px;
+    font-weight: 700;
+}
+.home-seven p{
+    font-size: 16px;
+    color: #6D6E76;
+}
+.home-seven button{
+    width: 174px;
+    height: 56px;
+    border: 0;
+    background-color: #FFD050;
+    font-weight: 700;
+    font-size: 18px;
+}
 
 
 
@@ -189,6 +447,98 @@ footer .end .mess{
 .blog-head .head{
     width: 50%;
 }
+
+.blog-one{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 50px 15%;
+}
+.blog-one .main{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid gainsboro;
+    padding-top: 50px;
+    width: 100%;
+}
+.blog-one .main .mod{
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+.blog-one .main .mod div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 25px;
+}
+.blog-one h2{
+    font-size: 36px;
+    font-weight: 700;
+}
+.blog-one h3{
+    color: #592EA9;
+    font-size: 16px;
+    font-weight: 600;
+}
+.blog-one p{
+    color: #6D6E76;
+}
+.blog-one .bottom{
+    display: flex;
+    width: 20%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24px;
+    align-self: center;
+    margin: 50px 0;
+}
+.blog-one .bottom a{
+    color: #6D6E76;
+    font-weight: 700;
+}
+.blog-one .bottom a:hover{
+    color: #232536;
+    font-size: 28px;
+}
+
+.blog-two{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 100px 15%;
+}
+.blog-two .main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.blog-two .main div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid #6D6E76;
+    flex-direction: column;
+    width: 22%;
+    padding: 15px 0;
+    padding-left: 15px;
+}
+.blog-two .main div:hover{
+    background-color: #FFD050;
+    border: 0;
+}
+.blog-two .main div img{
+    padding: 13px;
+    background-color: #FBF6EA;
+    border-radius: 15%;
+}
+.blog-two .main div:first-of-type img{
+    padding: 0px;
+}
+
 
 
 
@@ -343,9 +693,6 @@ footer .end .mess{
     justify-content: center;
     align-items: center;
 }
-/* .post-head .andrew div{
-    height: 48px;
-} */
  .post-head h1{
     font-size: 48px;
  }
