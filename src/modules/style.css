@@ -1,0 +1,409 @@
+nav{    
+    background-color: #232536;
+    color: white;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-family: 'Sen';
+}
+nav a{
+    text-decoration: none;
+    color: white;
+}
+nav .first{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+}
+nav .second{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+nav .first button{
+    width: 179px;
+    height: 56px;
+    font-weight: 700;
+}
+
+
+
+footer{   
+    background-color: #232536;
+    color: white;
+    font-family: 'Sen';
+    display: flex;
+    flex-direction: column;
+}
+
+footer .middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    width: 90%;
+    align-self: center;
+    height: 256px;
+}
+footer .middle div{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+footer .middle h1{
+    width: 40%;
+}
+footer .middle input{
+    background: transparent;
+    height: 25%;
+    width: 25%;
+    border:1px solid #4C4C4C ;
+    padding: 20px;
+}
+footer .middle button{
+    background-color: #FFD050;
+    border: 0;
+    width: 100px;
+    height: 50px;
+}
+
+footer .end{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 150px;
+}
+footer .end p{
+    opacity: 70%;
+    font-size: 16px;
+}
+footer .end .mess{
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+
+
+.home-head{
+    height: 720px;
+    background-image: url(images/home/oneback.png);
+    background-size: cover ;
+}
+.home-head .fon{
+    background-color: rgba(0, 0, 0, 50%);
+    height: 100%;
+    width: 100%;
+    color: white;
+    padding: 0 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+}
+.home-head .main{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 50%;
+    margin-top: 100px;
+}
+.home-head span{
+    color: rgba(255, 208, 80, 1);
+}
+.home-head h1{
+    font-size: 56px;
+}
+.home-head button{
+    width: 200px;
+    height: 60px;
+    margin-top: 50px;
+    background-color: rgba(255, 208, 80, 1);
+}
+
+.home-one{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 10%;
+}
+.home-one .top{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.home-one .bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.home-one .bottom .first{
+    width: 669px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.home-one .bottom .second{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.home-one .bottom .second div{
+    height: 25%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.blog-head{
+    background-color: #F4F0F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+}
+.blog-head .head{
+    width: 50%;
+}
+
+
+
+
+
+
+
+
+
+.contact{
+    padding-left: 25%;
+    padding-right: 25%;
+}
+.contact .top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.contact .middle{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    background-color: #592EA9;
+    padding: 50px;
+    margin-bottom: 50px;
+}
+.contact .middle div{
+    width: 45%;
+    height: 150px;
+}
+.contact .middle div p{
+    opacity: 60%;
+}
+.contact .middle div p:first-of-type{
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 10%);
+}
+
+.contact .bottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contact input{
+    width: 100%;
+    height: 76px;
+    margin: 10px 0;
+} 
+.contact input::placeholder{
+    transform: translateX(20px);
+} 
+.contact input:last-of-type{
+    height: 144px;
+}
+.contact input[type="text" i]{
+    padding-block: 0;
+    padding-inline: 0;
+}
+.contact .last::placeholder{
+    transform: translate(20px -35px);
+}
+.contact button{
+    width: 100%;
+    height: 64px;
+    margin-bottom: 100px;
+    background-color: #FFD050;
+    border: 0;
+}
+
+
+
+
+
+
+
+
+
+
+.priv-head{
+    background-color: #F4F0F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 256px;
+}
+.priv div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.privacy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.privacy div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.privacy div:first-of-type{
+    margin-top: 100px;
+}
+.privacy div:last-of-type{
+    margin-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.post-head{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.post-head p{
+    color: #6D6E76;
+}
+.post-head span{
+    color: #592EA9;
+}
+.post-head .top{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 50%;
+    margin: 100px 0;
+}
+.post-head .andrew{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* .post-head .andrew div{
+    height: 48px;
+} */
+ .post-head h1{
+    font-size: 48px;
+ }
+ .post-head .startup{
+    display: flex;
+    align-items: center;
+ }
+ .post-head .startup img{
+    height: 24px;
+    width: 24px;
+ }
+ .post-head .bottom img{
+    width: 100%;
+    height: auto;
+    display: flex;
+ }
+ .post-head .bottom{
+    width: 90%;
+    height: auto;
+ }
+
+ .post-one{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 100px 25%;
+ }
+ .post-one p{
+    color: #6D6E76;
+    font-size: 16px;
+ }
+  .post-one h2{
+    font-size: 32px;
+ }
+ .post-one ul{
+    font-weight: 700;
+    font-size: 24px;
+ }
+
+.post-two{
+    margin: 100px 10%;
+}
+.post-two p{
+    text-align: justify;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 60%);
+}
+.post-two span{
+    color: #592EA9;
+}
+.post-two .main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.post-two .main div{
+    width: 405px;
+}
+.post-two h2{
+    font-size: 28px;
+}
