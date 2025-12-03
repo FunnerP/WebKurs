@@ -37,6 +37,9 @@ function Blog() {
   const goPost = () => {
     navigate('/post')
   }
+  const goCategory = () => {
+    navigate('/category')
+  }
 
   return (
     <>
@@ -116,7 +119,7 @@ function Blog() {
     <section className='blog-two'>
             <h1>All Categories</h1>
             <div className='main'>
-              <div>
+              <div onClick={goCategory}>
                 <img src={bus} alt="" />
                 <h2>Business</h2>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>

@@ -40,6 +40,12 @@ function Home() {
   const goPost = () => {
     navigate('/post')
   }
+  const goCategory = () => {
+    navigate('/category')
+  }
+  const goAuthor = () => {
+    navigate('/author')
+  }
 
   return (
     <>
@@ -126,7 +132,7 @@ function Home() {
     <section className='home-three'>
       <h1>Choose A Catagory</h1>
       <div className='main'>
-        <div>
+        <div onClick={goCategory}>
           <img src={bus} alt="" />
           <h2>Business</h2>
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
@@ -155,7 +161,7 @@ function Home() {
         <h2>Why we started </h2>
         <h1>It started out as a simple idea and evolved into our passion</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-        <button>Discover our story</button>
+        <button onClick={goAuthor}>Discover our story</button>
       </div>
     </section>
 
@@ -243,6 +249,7 @@ function Home() {
         <button>Join Now</button>
       </div>
     </section>
+    
     <footer>
       <nav>
       <h1>Finsweet</h1>

@@ -9,7 +9,8 @@ import About from './modules/About.jsx'
 import Contact from './modules/Contact.jsx'
 import Privacy from './modules/Privacy.jsx'
 import Post from './modules/Post.jsx'
-import App from './App.jsx'
+import Category from './modules/category.jsx'
+import Author from './modules/Author.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -21,6 +22,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/contact" element={<Contact/>} />
         <Route path="/privacy" element={<Privacy/>} />
         <Route path="/post" element={<Post/>} />
+        <Route path="/category" element={<Category/>} />
+        <Route path="/author" element={<Author/>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
