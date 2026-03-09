@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './style.css'
 import { useNavigate } from 'react-router-dom'
+import { postsAPI, authorsAPI, getImageUrl } from '../api';
 import tw from './images/navs/tw.png'
 import fb from './images/navs/fb.png'
 import insta from './images/navs/insta.png'
@@ -20,6 +21,63 @@ import netwo from './images/author/two.png'
 function Author() {
   const [count, setCount] = useState(0)
   const navigate = useNavigate()
+
+  const [posts, setPosts] = useState([]);
+    const [authors, setAuthors] = useState({}); // Изменено на объект
+  
+    useEffect(() => {
+      fetchData(); // Используем одну функцию для загрузки
+    }, []);
+  
+    const fetchData = async () => {
+      try {
+        const [postsRes, authorsRes] = await Promise.all([
+          postsAPI.getAll(),
+          authorsAPI.getAll()
+        ]);
+        
+        setPosts(postsRes.data || []);
+        
+        // Преобразуем массив авторов в объект для быстрого доступа по ID
+        if (Array.isArray(authorsRes.data)) {
+          const authorsObj = {};
+          authorsRes.data.forEach(author => {
+            authorsObj[author.a_id] = author; // Сохраняем весь объект автора
+          });
+          setAuthors(authorsObj);
+        }
+        
+      } catch (error) {
+        console.error('Ошибка загрузки:', error);
+      }
+    };
+  
+    const getAuthorName = (post) => {
+      if (!post) return 'Unknown Author';
+      
+      const authorAId = post.authorAId;
+      
+      if (authorAId && authors && typeof authors === 'object') {
+        const author = authors[authorAId];
+        return author?.a_name || 'Unknown Author';
+      }
+      
+      return 'Unknown Author';
+    };
+  
+    const formatDate = (dateString) => {
+      if (!dateString) return 'May 23, 2022';
+      try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+          month: 'long', 
+          day: 'numeric', 
+          year: 'numeric' 
+        });
+      } catch {
+        return 'May 23, 2022';
+      }
+    };
 
   const goHome = () => {
     navigate('/')
@@ -76,26 +134,26 @@ function Author() {
 
     <section className='author-one'>
         <h1>My Posts</h1>
-        <div className='post'>
-            <img src={neone} alt="" />
-            <div>
-                <h2>BUSINESS</h2>
-                <h1>Font sizes in UI design: The complete guide to follow</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-            </div>
+        {posts.map((post) => (
+        <div 
+          key={post.p_id} 
+          className='post'
+        >
+          <img 
+            src={post.p_img ? getImageUrl(post.p_img) : neone} 
+            alt={post.p_name}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = neone;
+            }}
+          />
+          <div>
+            <h2>{post.p_theme}</h2>
+            <h1>{post.p_name}</h1>
+            <p>{post.p_description}</p>
+          </div>
         </div>
-        <div className='post'>
-            <img src={netwo} alt="" />
-            <div>
-                <h2>ECONOMY</h2>
-                <h1>How to build rapport with your web design clients</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-            </div>
-        </div>
+      ))}
     </section>
 
     <footer>

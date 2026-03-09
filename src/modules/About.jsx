@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './style.css'
 import { useNavigate } from 'react-router-dom'
+import { postsAPI, authorsAPI, getImageUrl } from '../api';
 import tw from './images/navs/tw.png'
 import fb from './images/navs/fb.png'
 import insta from './images/navs/insta.png'
@@ -10,17 +11,67 @@ import first from './images/about/first.png'
 import second from './images/about/second.png'
 
 import floyd from './images/home/floyd.png'
-import dianne from './images/home/dianne.png'
-import jenny from './images/home/jenny.png'
-import leslie from './images/home/leslie.png'
-import guy from './images/about/guy.png'
-import eleanor from './images/about/eleanor.png'
-import robert from './images/about/robert.png'
-import jacob from './images/about/jacob.png'
 
 function About() {
   const [count, setCount] = useState(0)
   const navigate = useNavigate()
+
+  const [posts, setPosts] = useState([]);
+    const [authors, setAuthors] = useState({}); // Изменено на объект
+  
+    useEffect(() => {
+      fetchData(); // Используем одну функцию для загрузки
+    }, []);
+  
+    const fetchData = async () => {
+      try {
+        const [postsRes, authorsRes] = await Promise.all([
+          postsAPI.getAll(),
+          authorsAPI.getAll()
+        ]);
+        
+        setPosts(postsRes.data || []);
+        
+        // Преобразуем массив авторов в объект для быстрого доступа по ID
+        if (Array.isArray(authorsRes.data)) {
+          const authorsObj = {};
+          authorsRes.data.forEach(author => {
+            authorsObj[author.a_id] = author; // Сохраняем весь объект автора
+          });
+          setAuthors(authorsObj);
+        }
+        
+      } catch (error) {
+        console.error('Ошибка загрузки:', error);
+      }
+    };
+  
+    const getAuthorName = (post) => {
+      if (!post) return 'Unknown Author';
+      
+      const authorAId = post.authorAId;
+      
+      if (authorAId && authors && typeof authors === 'object') {
+        const author = authors[authorAId];
+        return author?.a_name || 'Unknown Author';
+      }
+      
+      return 'Unknown Author';
+    };
+  
+    const formatDate = (dateString) => {
+      if (!dateString) return 'May 23, 2022';
+      try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+          month: 'long', 
+          day: 'numeric', 
+          year: 'numeric' 
+        });
+      } catch {
+        return 'May 23, 2022';
+      }
+    };
 
   const goHome = () => {
     navigate('/')
@@ -118,94 +169,25 @@ function About() {
     <section className='about-two'>
       <h1>List of Authors</h1>
       <div className='main'>
-        <div className='in'>
-            <img src={floyd} alt="" />
-            <h2>Floyd Miles</h2>
-            <p>Content Writer @Company</p>
-            <div className='mess'>
-              <a href=""><img src={tw} alt="" /></a>
-              <a href=""><img src={fb} alt="" /></a>
-              <a href=""><img src={insta} alt="" /></a>
-              <a href=""><img src={ld} alt="" /></a>
-          </div>
-        </div>
-        <div className='in'>
-            <img src={dianne} alt="" />
-            <h2>Dianne Russell</h2>
-            <p>Content Writer @Company</p>
-            <div className='mess'>
-              <a href=""><img src={tw} alt="" /></a>
-              <a href=""><img src={fb} alt="" /></a>
-              <a href=""><img src={insta} alt="" /></a>
-              <a href=""><img src={ld} alt="" /></a>
-          </div>
-        </div>
-        <div className='in'>
-            <img src={jenny} alt="" />
-            <h2>Jenny Wilson</h2>
-            <p>Content Writer @Company</p>
-            <div className='mess'>
-              <a href=""><img src={tw} alt="" /></a>
-              <a href=""><img src={fb} alt="" /></a>
-              <a href=""><img src={insta} alt="" /></a>
-              <a href=""><img src={ld} alt="" /></a>
-          </div>
-        </div>
-        <div className='in'>
-            <img src={leslie} alt="" />
-            <h2>Leslie Alexander</h2>
-            <p>Content Writer @Company</p>
-            <div className='mess'>
-              <a href=""><img src={tw} alt="" /></a>
-              <a href=""><img src={fb} alt="" /></a>
-              <a href=""><img src={insta} alt="" /></a>
-              <a href=""><img src={ld} alt="" /></a>
-          </div>
-        </div>
-        <div className='in'>
-            <img src={guy} alt="" />
-            <h2>Guy Hawkins</h2>
-            <p>Content Writer @Company</p>
-            <div className='mess'>
-              <a href=""><img src={tw} alt="" /></a>
-              <a href=""><img src={fb} alt="" /></a>
-              <a href=""><img src={insta} alt="" /></a>
-              <a href=""><img src={ld} alt="" /></a>
-          </div>
-        </div>
-        <div className='in'>
-            <img src={eleanor} alt="" />
-            <h2>Eleanor Pena</h2>
-            <p>Content Writer @Company</p>
-            <div className='mess'>
-              <a href=""><img src={tw} alt="" /></a>
-              <a href=""><img src={fb} alt="" /></a>
-              <a href=""><img src={insta} alt="" /></a>
-              <a href=""><img src={ld} alt="" /></a>
-          </div>
-        </div>
-        <div className='in'>
-            <img src={robert} alt="" />
-            <h2>Robert Fox</h2>
-            <p>Content Writer @Company</p>
-            <div className='mess'>
-              <a href=""><img src={tw} alt="" /></a>
-              <a href=""><img src={fb} alt="" /></a>
-              <a href=""><img src={insta} alt="" /></a>
-              <a href=""><img src={ld} alt="" /></a>
-          </div>
-        </div>
-        <div className='in'>
-            <img src={jacob} alt="" />
-            <h2>Jacob Jones</h2>
-            <p>Content Writer @Company</p>
-            <div className='mess'>
-              <a href=""><img src={tw} alt="" /></a>
-              <a href=""><img src={fb} alt="" /></a>
-              <a href=""><img src={insta} alt="" /></a>
-              <a href=""><img src={ld} alt="" /></a>
-          </div>
-        </div>
+        {Object.values(authors).map((author) => (
+              <div key={author.a_id} className='in'>
+                <img 
+                  src={author.a_img ? getImageUrl(author.a_img) : floyd} 
+                  alt={author.a_name}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = floyd;
+                  }}
+                />
+                <h2>{author.a_name}</h2>
+                <p>Content Writer @Company</p>
+                <div className='mess'>
+                  <a href=""><img src={tw} alt="" /></a>
+                  <a href=""><img src={fb} alt="" /></a>
+                  <a href=""><img src={insta} alt="" /></a>
+                  <a href=""><img src={ld} alt="" /></a>
+                </div>
+              </div> ))}
       </div>
     </section>
 

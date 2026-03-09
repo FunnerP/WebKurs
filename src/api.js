@@ -10,6 +10,10 @@ const api = axios.create({
   },
 });
 
+export const authorsAPI = {
+  getAll: () => api.get('/authors'),
+  getById: (id) => api.get(`/authors/${id}`),
+};
 export const postsAPI = {
   getAll: () => api.get('/posts'),
   getById: (id) => api.get(`/posts/${id}`),

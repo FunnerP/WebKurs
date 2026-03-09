@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { postsAPI, authorsAPI, getImageUrl } from '../api';
 import './style.css'
 import { useNavigate } from 'react-router-dom'
 import andrew from './images/post/andrew.png'
@@ -15,6 +16,63 @@ import three from './images/post/three.png'
 function Post() {
   const [count, setCount] = useState(0)
   const navigate = useNavigate()
+
+    const [posts, setPosts] = useState([]);
+    const [authors, setAuthors] = useState({}); // Изменено на объект
+  
+    useEffect(() => {
+      fetchData(); // Используем одну функцию для загрузки
+    }, []);
+  
+    const fetchData = async () => {
+      try {
+        const [postsRes, authorsRes] = await Promise.all([
+          postsAPI.getAll(),
+          authorsAPI.getAll()
+        ]);
+        
+        setPosts(postsRes.data || []);
+        
+        // Преобразуем массив авторов в объект для быстрого доступа по ID
+        if (Array.isArray(authorsRes.data)) {
+          const authorsObj = {};
+          authorsRes.data.forEach(author => {
+            authorsObj[author.a_id] = author; // Сохраняем весь объект автора
+          });
+          setAuthors(authorsObj);
+        }
+        
+      } catch (error) {
+        console.error('Ошибка загрузки:', error);
+      }
+    };
+  
+    const getAuthorName = (post) => {
+      if (!post) return 'Unknown Author';
+      
+      const authorAId = post.authorAId;
+      
+      if (authorAId && authors && typeof authors === 'object') {
+        const author = authors[authorAId];
+        return author?.a_name || 'Unknown Author';
+      }
+      
+      return 'Unknown Author';
+    };
+  
+    const formatDate = (dateString) => {
+      if (!dateString) return 'May 23, 2022';
+      try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+          month: 'long', 
+          day: 'numeric', 
+          year: 'numeric' 
+        });
+      } catch {
+        return 'May 23, 2022';
+      }
+    };
 
   const goHome = () => {
     navigate('/')
@@ -89,25 +147,36 @@ function Post() {
     <section className='post-two'>
         <h1>What to read next</h1>
         <div className='main'>
-            <div>
-                <img src={one} alt="" />
-                <p>By <span>John Doe</span> | Aug 23, 2021</p>
-                <h2>A UX Case Study Creating a Studious Environment for Students: </h2>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-            </div>
-            <div>
-                <img src={two} alt="" />
-                <p>By <span>John Doe</span> | Aug 23, 2021</p>
-                <h2>A UX Case Study Creating a Studious Environment for Students: </h2>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-            </div>
-            <div>
-                <img src={three} alt="" />
-                <p>By <span>John Doe</span> | Aug 23, 2021</p>
-                <h2>A UX Case Study Creating a Studious Environment for Students: </h2>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-            </div>
-        </div>
+  {posts.slice(-3).map((post) => (
+    <div 
+      key={post.p_id} 
+      onClick={(e) => {
+        e.preventDefault();
+        navigate(`/post/${post.p_id}`);
+      }}
+      style={{ cursor: 'pointer' }}
+    >
+      <img 
+        src={post.p_img ? getImageUrl(post.p_img) : one} 
+        alt={post.p_name}
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = one;
+        }}
+      />
+      <p>
+        By <span>{getAuthorName(post)}</span> |{' '}
+        {new Date(post.createdAt || Date.now()).toLocaleDateString('en-US', { 
+          month: 'short', 
+          day: 'numeric', 
+          year: 'numeric' 
+        }).replace(',', '')}
+      </p>
+      <h2>{post.p_name || 'A UX Case Study Creating a Studious Environment for Students:'}</h2>
+      <p>{post.p_theme || post.p_type || 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.'}</p>
+    </div>
+  ))}
+</div>
     </section>
     <footer>
       <nav>

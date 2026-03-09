@@ -63,6 +63,9 @@ function Blog() {
   const goCategory = () => {
     navigate('/category')
   }
+  const goAuthor = () => {
+    navigate('/author')
+  }
 
   if (loading) {
     return <div className="loading">Загрузка...</div>;
@@ -88,7 +91,7 @@ function Blog() {
           <h1>Step-by-step guide to choosing great font pairs</h1>
           <p>By <span>James West</span>  |  May 23, 2022 </p>
           <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-          <button onClick={goPost}>Read More</button>
+          <button onClick={goAuthor}>Read More</button>
         </div>
         <img src={man} alt="" />
     </header>

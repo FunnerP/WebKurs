@@ -1,6 +1,15 @@
 *{
     font-family: 'Sen';
 }
+
+@font-face {
+	font-family: 'Sen'; 
+	src: url('./assets/font.ttf'); 
+}
+body{
+	margin: 0;
+}
+
 nav{    
     background-color: #232536;
     color: white;
@@ -175,6 +184,7 @@ footer .end .mess{
 }
 .home-one .bottom .second div{
     height: 25%;
+    margin-left: 50px;
 }
 .home-one .bottom .second div:hover{
     background-color: #FBF6EA;
