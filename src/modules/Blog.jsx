@@ -1,17 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './style.css'
 import { useNavigate } from 'react-router-dom'
+import { postsAPI, getImageUrl } from '../api';
 import man from './images/blog/man.png'
 import tw from './images/navs/tw.png'
 import fb from './images/navs/fb.png'
 import insta from './images/navs/insta.png'
 import ld from './images/navs/ld.png'
 
-import one from './images/blog/one.png'
-import two from './images/blog/two.png'
-import three from './images/blog/three.png'
-import four from './images/blog/four.png'
-import five from './images/blog/five.png'
 
 import bus from './images/home/bus.png'
 import start from './images/home/start.png'
@@ -20,7 +16,34 @@ import tech from './images/home/tech.png'
 
 function Blog() {
   const [count, setCount] = useState(0)
+
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 5;
+
   const navigate = useNavigate()
+
+   useEffect(() => {
+    fetchData();
+  }, [currentPage]);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await postsAPI.getAll();
+      const allPosts = response.data;
+      const startIndex = (currentPage - 1) * postsPerPage;
+      const endIndex = startIndex + postsPerPage;
+      const currentPosts = allPosts.slice(startIndex, endIndex);
+      setPosts(currentPosts);
+      
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const goHome = () => {
     navigate('/')
@@ -41,6 +64,10 @@ function Blog() {
     navigate('/category')
   }
 
+  if (loading) {
+    return <div className="loading">Загрузка...</div>;
+  }
+  
   return (
     <>
     <nav>
@@ -69,47 +96,26 @@ function Blog() {
     <section className='blog-one'>
       <h1>All posts</h1>
       <div className='main'>
-        <div className='mod'>
-          <img src={one} alt="" />
-          <div>
-            <h3>Startup</h3>
-            <h2>Design tips for designers that cover everything you need</h2>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-          </div>
+          {posts.map((post) => (
+            <div 
+              key={post.p_id} 
+              className='mod'>
+              <img 
+                src={post.p_img ? getImageUrl(post.p_img) : one}
+                alt=""
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = one;
+                }}
+              />
+              <div>
+                <h3>{post.p_type || 'None'}</h3>
+                <h2>{post.p_name || 'None'}</h2>
+                <p>{post.p_theme || 'None'}</p>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className='mod'>
-          <img src={two} alt="" />
-          <div>
-            <h3>BUSINESS</h3>
-            <h2>How to build rapport with your web design clients</h2>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-          </div>
-        </div>
-        <div className='mod'>
-          <img src={three} alt="" />
-          <div>
-            <h3>Startup</h3>
-            <h2>Logo design trends to avoid in 2022</h2>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-          </div>
-        </div>
-        <div className='mod'>
-          <img src={four} alt="" />
-          <div>
-            <h3>TECHNOLOGY</h3>
-            <h2>8 Figma design systems you can download for free today</h2>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-          </div>
-        </div>
-        <div className='mod'>
-          <img src={five} alt="" />
-          <div>
-            <h3>ECONOMY</h3>
-            <h2>Font sizes in UI design: The complete guide to follow</h2>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-          </div>
-        </div>
-      </div>
       <div className='bottom'>
         <a href="">◀ Prev</a>
         <a href="">Next ▶</a>

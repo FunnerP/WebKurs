@@ -476,7 +476,7 @@ footer .end .mess{
 }
 .blog-one .main .mod{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 25px 0;
 }
 .blog-one .main .mod div{

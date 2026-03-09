@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './style.css'
 import { useNavigate } from 'react-router-dom'
+import { postsAPI, getImageUrl } from '../api';
 import tw from './images/navs/tw.png'
 import fb from './images/navs/fb.png'
 import insta from './images/navs/insta.png'
@@ -16,6 +17,42 @@ import tech from './images/home/tech.png'
 function Category() {
   const [count, setCount] = useState(0)
   const navigate = useNavigate()
+
+  const [businessPosts, setBusinessPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchBusinessPosts();
+  }, []);
+
+  const fetchBusinessPosts = async () => {
+    try {
+      setLoading(true);
+      console.log('Fetching business posts...');
+      
+      // Получаем все посты
+      const response = await postsAPI.getAll();
+      console.log('API Response:', response);
+      
+      const allPosts = response.data || [];
+      console.log('All posts:', allPosts);
+      
+      // Фильтруем только посты с p_type "Business"
+      const filtered = allPosts.filter(post => 
+        post.p_type === "Business"
+      );
+      
+      console.log('Filtered business posts:', filtered);
+      setBusinessPosts(filtered);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching business posts:', err);
+      setError('Ошибка при загрузке бизнес-постов');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const goHome = () => {
     navigate('/')
@@ -56,38 +93,27 @@ function Category() {
 
     <section className='category-one'>
         <div className='left'>
-            <div className='bus'>
-                <img src={one} alt="" />
+            {businessPosts.map((post) => (
+              <div 
+                key={post.p_id} 
+                className='bus'
+                style={{ cursor: 'pointer' }}
+              >
+                <img 
+                  src={post.p_img ? getImageUrl(post.p_img) : one} 
+                  alt={post.p_name}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = one;
+                  }}
+                />
                 <div>
-                    <h2>BUSINESS</h2>
-                    <h1>Top 6 free website mockup tools 2022</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non blandit massa enim nec.</p>
+                  <h2>BUSINESS</h2>
+                  <h1>{post.p_name}</h1>
+                  <p>{post.p_type || 'None'}</p>
                 </div>
-            </div>
-            <div className='bus'>
-                <img src={one} alt="" />
-                <div>
-                    <h2>BUSINESS</h2>
-                    <h1>Step-by-step guide to choosing great font pairs</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non blandit massa enim nec.</p>
-                </div>
-            </div>
-            <div className='bus'>
-                <img src={one} alt="" />
-                <div>
-                    <h2>BUSINESS</h2>
-                    <h1>Ten free foogle fonts that you should use</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non blandit massa enim nec.</p>
-                </div>
-            </div>
-            <div className='bus'>
-                <img src={one} alt="" />
-                <div>
-                    <h2>BUSINESS</h2>
-                    <h1>What did I learn from doing 50+ design sprints?</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non blandit massa enim nec.</p>
-                </div>
-            </div>
+              </div>
+            ))}
         </div>
         <div className='right'>
             <h1>Categories</h1>
