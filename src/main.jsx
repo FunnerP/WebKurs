@@ -8,9 +8,9 @@ import About from './modules/About.jsx'
 import Contact from './modules/Contact.jsx'
 import Privacy from './modules/Privacy.jsx'
 import Post from './modules/Post.jsx'
-import Category from './modules/category.jsx'
+import Category from './modules/Category.jsx'
 import Author from './modules/Author.jsx'
-
+n
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
